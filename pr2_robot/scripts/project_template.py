@@ -26,7 +26,7 @@ from rospy_message_converter import message_converter
 import yaml
 
 ###########################################################
-from pcl_helper import ros_to_pcl, pcl_to_ros, get_color_list, rgb_to_float, XYZRGB_to_XYZ
+# from pcl_helper import ros_to_pcl, pcl_to_ros, get_color_list, rgb_to_float, XYZRGB_to_XYZ
 
 ###########################################################
 
