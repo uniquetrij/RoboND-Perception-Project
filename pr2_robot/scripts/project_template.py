@@ -257,8 +257,6 @@ def pr2_mover(object_list):
     PICK = Pose()
     PLACE = Pose()
 
-    object_name = []
-    object_group = []
     labels = []
     centroids = [] # to be list of tuples (x, y, z)
 
@@ -290,7 +288,7 @@ def pr2_mover(object_list):
         OBJECT.data = object_list_param[i]['name']
 
         # Specify the test scene number
-        SCENE.data = 2
+        SCENE.data = 1
 
         # Get index of object from stored list
         obj_idx = labels.index(object_list_param[i]['name'])
@@ -340,7 +338,7 @@ def pr2_mover(object_list):
             print "Service call failed: %s"%e
 
     # TODO: Output your request parameters into output yaml file
-    send_to_yaml('output_%d.yaml' % test_scene_num.data, dict_list)
+    send_to_yaml('src/RoboND-Perception-Project/output_%d.yaml' % SCENE.data, dict_list)
 
 
 
