@@ -35,6 +35,41 @@
 You're reading it!
 
 ### Exercise 1, 2 and 3 pipeline implemented
+
+The PR2 robot is fitted with an RGB-D camera that provides per-pixel depth information in addition to an RGB image. 
+This camera continuously captures the point cloud from the robot's environment and writes to the ros topic `/pr2/world/points`.
+This serves as our input to the perception pipeline. 
+
+The input is in the form of _ROS PointCloud2_ message object. We need to convert it to _PCL PointXYZRGB_ to use it in our pipeline.
+The following code does the job for us.
+
+```python
+    # TODO: Convert ROS msg to PCL data
+    cloud_filtered =  ros_to_pcl(pcl_msg)
+```
+
+Initially the input may contain noisy data which has to be cleaned and filtered to obtain point cloud corresponding to 
+the objects of interest only. To do this we first apply _PCL’s Statistical Outlier Removal_ to get rid of the noise 
+in the point cloud data. Assuming a Gaussian distribution, we filter out the noise as follows:
+
+```python
+    # TODO: Statistical Outlier Filtering
+    # Much like the previous filters, we start by creating a filter object:
+    outlier_filter = cloud_filtered.make_statistical_outlier_filter()
+
+    # Set the number of neighboring points to analyze for any given point
+    outlier_filter.set_mean_k(10)
+
+    # Set threshold scale factor
+    x = 0.5
+
+    # Any point with a mean distance larger than global (mean distance+x*std_dev) will be considered outlier
+    outlier_filter.set_std_dev_mul_thresh(x)
+
+    # Finally call the filter function for magic
+    cloud_filtered = outlier_filter.filter()
+```
+
 #### 1. Complete Exercise 1 steps. Pipeline for filtering and RANSAC plane fitting implemented.
 
 #### 2. Complete Exercise 2 steps: Pipeline including clustering for segmentation implemented.  
@@ -53,5 +88,12 @@ And here's another image!
 
 Spend some time at the end to discuss your code, what techniques you used, what worked and why, where the implementation might fail and how you might improve it if you were going to pursue this project further.  
 
+roslaunch sensor_stick training.launch
+rosrun sensor_stick capture_features.py
+rosrun sensor_stick train_svm.py
 
+rosdep install --from-paths src --ignore-src --rosdistro=kinetic -y
 
+roslaunch pr2_robot pick_place_project.launch
+
+rosrun pr2_robot project_template.py

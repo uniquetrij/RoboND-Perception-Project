@@ -25,12 +25,6 @@ from pr2_robot.srv import *
 from rospy_message_converter import message_converter
 import yaml
 
-###########################################################
-# from pcl_helper import ros_to_pcl, pcl_to_ros, get_color_list, rgb_to_float, XYZRGB_to_XYZ
-
-###########################################################
-
-
 # Helper function to get surface normals
 def get_normals(cloud):
     get_normals_prox = rospy.ServiceProxy('/feature_extractor/get_normals', GetNormals)
@@ -58,11 +52,11 @@ def pcl_callback(pcl_msg):
 # Exercise-2 TODOs:
 
     # TODO: Convert ROS msg to PCL data
-    cloud_filtered =  ros_to_pcl(pcl_msg)
+    point_cloud =  ros_to_pcl(pcl_msg)
     
     # TODO: Statistical Outlier Filtering
     # Much like the previous filters, we start by creating a filter object:
-    outlier_filter = cloud_filtered.make_statistical_outlier_filter()
+    outlier_filter = point_cloud.make_statistical_outlier_filter()
 
     # Set the number of neighboring points to analyze for any given point
     outlier_filter.set_mean_k(10)
@@ -103,8 +97,8 @@ def pcl_callback(pcl_msg):
     # Assign axis and range to the passthrough filter object.
     filter_axis = 'z'
     passthrough.set_filter_field_name(filter_axis)
-    axis_min = 0.6
-    axis_max = 1.1
+    axis_min = 0.60
+    axis_max = 1.10
     passthrough.set_filter_limits(axis_min, axis_max)
 
     # Finally use the filter function to obtain the resultant point cloud.
@@ -115,8 +109,8 @@ def pcl_callback(pcl_msg):
     # Assign axis and range to the passthrough filter object.
     filter_axis = 'y'
     passthrough.set_filter_field_name(filter_axis)
-    axis_min = -0.4
-    axis_max = 0.4
+    axis_min = -0.45
+    axis_max = 0.45
     passthrough.set_filter_limits(axis_min, axis_max)
 
     # Finally use the filter function to obtain the resultant point cloud.
@@ -136,7 +130,7 @@ def pcl_callback(pcl_msg):
     # Max distance for a point to be considered fitting the model
     # Experiment with different values for max_distance
     # for segmenting the table
-    max_distance = 0.03
+    max_distance = 0.01
     seg.set_distance_threshold(max_distance)
 
     # Call the segment function to obtain set of inlier indices and model coefficients
@@ -163,9 +157,9 @@ def pcl_callback(pcl_msg):
     # as well as minimum and maximum cluster size (in points)
     # NOTE: These are poor choices of clustering parameters
     # Your task is to experiment and find values that work for segmenting objects.
-    ec.set_ClusterTolerance(0.05)
+    ec.set_ClusterTolerance(0.04)
     ec.set_MinClusterSize(10)
-    ec.set_MaxClusterSize(25000)
+    ec.set_MaxClusterSize(20000)
     # Search the k-d tree for clusters
     ec.set_SearchMethod(tree)
     # Extract indices for each of the discovered clusters
