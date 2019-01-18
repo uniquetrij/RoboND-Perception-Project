@@ -53,16 +53,16 @@ def pcl_callback(pcl_msg):
 
     # TODO: Convert ROS msg to PCL data
     point_cloud =  ros_to_pcl(pcl_msg)
-    
+
     # TODO: Statistical Outlier Filtering
     # Much like the previous filters, we start by creating a filter object:
     outlier_filter = point_cloud.make_statistical_outlier_filter()
 
     # Set the number of neighboring points to analyze for any given point
-    outlier_filter.set_mean_k(10)
+    outlier_filter.set_mean_k(8)
 
     # Set threshold scale factor
-    x = 0.5
+    x = 0.3
 
     # Any point with a mean distance larger than global (mean distance+x*std_dev) will be considered outlier
     outlier_filter.set_std_dev_mul_thresh(x)
@@ -78,15 +78,15 @@ def pcl_callback(pcl_msg):
     # Choose a voxel (also known as leaf) size
     # Note: this (1) is a poor choice of leaf size
     # Experiment and find the appropriate size!
-    LEAF_SIZE = 0.01
+    LEAF_SIZE = 0.0075
 
     # Set the voxel (or leaf) size
     vox.set_leaf_size(LEAF_SIZE, LEAF_SIZE, LEAF_SIZE)
 
     # Call the filter function to obtain the resultant downsampled point cloud
     cloud_filtered = vox.filter()
-    filename = 'voxel_downsampled.pcd'
-    pcl.save(cloud_filtered, filename)
+    # filename = 'voxel_downsampled.pcd'
+    # pcl.save(cloud_filtered, filename)
 
     # TODO: PassThrough Filter
 
@@ -109,14 +109,14 @@ def pcl_callback(pcl_msg):
     # Assign axis and range to the passthrough filter object.
     filter_axis = 'y'
     passthrough.set_filter_field_name(filter_axis)
-    axis_min = -0.4
-    axis_max = 0.4
+    axis_min = -0.45
+    axis_max = 0.45
     passthrough.set_filter_limits(axis_min, axis_max)
 
     # Finally use the filter function to obtain the resultant point cloud.
     cloud_filtered = passthrough.filter()
-    filename = 'pass_through_filtered.pcd'
-    pcl.save(cloud_filtered, filename)
+    # filename = 'pass_through_filtered.pcd'
+    # pcl.save(cloud_filtered, filename)
 
     # TODO: RANSAC Plane Segmentation
 
@@ -130,7 +130,7 @@ def pcl_callback(pcl_msg):
     # Max distance for a point to be considered fitting the model
     # Experiment with different values for max_distance
     # for segmenting the table
-    max_distance = 0.03
+    max_distance = 0.02
     seg.set_distance_threshold(max_distance)
 
     # Call the segment function to obtain set of inlier indices and model coefficients
@@ -139,12 +139,12 @@ def pcl_callback(pcl_msg):
     # TODO: Extract inliers and outliers
     # Extract inliers
     extracted_inliers = cloud_filtered.extract(inliers, negative=False)
-    filename = 'extracted_inliers.pcd'
-    pcl.save(extracted_inliers, filename)
+    # filename = 'extracted_inliers.pcd'
+    # pcl.save(extracted_inliers, filename)
 
     extracted_outliers = cloud_filtered.extract(inliers, negative=True)
-    filename = 'extracted_outliers.pcd'
-    pcl.save(extracted_outliers, filename)
+    # filename = 'extracted_outliers.pcd'
+    # pcl.save(extracted_outliers, filename)
 
     # TODO: Euclidean Clustering
     # Euclidean Clustering
@@ -157,9 +157,9 @@ def pcl_callback(pcl_msg):
     # as well as minimum and maximum cluster size (in points)
     # NOTE: These are poor choices of clustering parameters
     # Your task is to experiment and find values that work for segmenting objects.
-    ec.set_ClusterTolerance(0.05)
-    ec.set_MinClusterSize(10)
-    ec.set_MaxClusterSize(25000)
+    ec.set_ClusterTolerance(0.04)
+    ec.set_MinClusterSize(50)
+    ec.set_MaxClusterSize(5000)
     # Search the k-d tree for clusters
     ec.set_SearchMethod(tree)
     # Extract indices for each of the discovered clusters
@@ -185,8 +185,13 @@ def pcl_callback(pcl_msg):
 
     # TODO: Convert PCL data to ROS messages
     ros_cluster_cloud = pcl_to_ros(cluster_cloud)
+    ros_cloud_objects = pcl_to_ros(extracted_outliers)
+    ros_cloud_table = pcl_to_ros(extracted_inliers)
 
     # TODO: Publish ROS messages
+    pcl_objects_pub.publish(ros_cloud_objects)
+    pcl_table_pub.publish(ros_cloud_table)
+    pcl_cluster_pub.publish(ros_cluster_cloud)
 
 
 # Exercise-3 TODOs:
@@ -285,15 +290,15 @@ def pr2_mover(object_list):
         SCENE.data = 1
 
         # Get index of object from stored list
-        obj_idx = labels.index(object_list_param[i]['name'])
+        obj_index = labels.index(object_list_param[i]['name'])
 
         # Stop if object was not detected in the scene
-        if (obj_idx == -1):
-            rospy.loginfo('Object not detected')
+        if (obj_index == -1):
+            rospy.loginfo('No object detected')
             return
 
         # TODO: Get the PointCloud for a given object and obtain it's centroid
-        centroid = centroids[obj_idx]
+        centroid = centroids[obj_index]
         PICK.position.x = np.asscalar(centroid[0])
         PICK.position.y = np.asscalar(centroid[1])
         PICK.position.z = np.asscalar(centroid[2])
@@ -324,9 +329,9 @@ def pr2_mover(object_list):
             pick_place_routine = rospy.ServiceProxy('pick_place_routine', PickPlace)
 
             # TODO: Insert your message variables to be sent as a service request
-            resp = pick_place_routine(SCENE, OBJECT, ARM, PICK, PLACE)
+            res = pick_place_routine(SCENE, OBJECT, ARM, PICK, PLACE)
 
-            print ("Response: ",resp.success)
+            print ("Response: ",res.success)
 
         except rospy.ServiceException, e:
             print "Service call failed: %s"%e
@@ -345,6 +350,8 @@ if __name__ == '__main__':
     pcl_sub = rospy.Subscriber("/pr2/world/points", pc2.PointCloud2, pcl_callback, queue_size=1)
 
     # TODO: Create Publishers
+    pcl_objects_pub = rospy.Publisher("/pcl_objects", PointCloud2, queue_size=1)
+    pcl_table_pub = rospy.Publisher("/pcl_table", PointCloud2, queue_size=1)
     pcl_cluster_pub = rospy.Publisher("/pcl_cluster", PointCloud2, queue_size=1)
     object_markers_pub = rospy.Publisher("/object_markers", Marker, queue_size=1)
     detected_objects_pub = rospy.Publisher("/detected_objects", DetectedObjectsArray, queue_size=1)
