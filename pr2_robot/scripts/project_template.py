@@ -97,8 +97,8 @@ def pcl_callback(pcl_msg):
     # Assign axis and range to the passthrough filter object.
     filter_axis = 'z'
     passthrough.set_filter_field_name(filter_axis)
-    axis_min = 0.60
-    axis_max = 1.10
+    axis_min = 0.35
+    axis_max = 4.00
     passthrough.set_filter_limits(axis_min, axis_max)
 
     # Finally use the filter function to obtain the resultant point cloud.
@@ -157,9 +157,9 @@ def pcl_callback(pcl_msg):
     # as well as minimum and maximum cluster size (in points)
     # NOTE: These are poor choices of clustering parameters
     # Your task is to experiment and find values that work for segmenting objects.
-    ec.set_ClusterTolerance(0.04)
-    ec.set_MinClusterSize(10)
-    ec.set_MaxClusterSize(20000)
+    ec.set_ClusterTolerance(0.015)
+    ec.set_MinClusterSize(45)
+    ec.set_MaxClusterSize(16000)
     # Search the k-d tree for clusters
     ec.set_SearchMethod(tree)
     # Extract indices for each of the discovered clusters
@@ -218,7 +218,7 @@ def pcl_callback(pcl_msg):
 
         # Publish a label into RViz
         label_pos = list(white_cloud[pts_list[0]])
-        label_pos[2] += .4
+        label_pos[2] += .25
         object_markers_pub.publish(make_label(label, label_pos, index))
 
         # Add the detected object to the list of detected objects.

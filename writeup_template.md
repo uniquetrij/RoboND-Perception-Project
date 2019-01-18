@@ -3,6 +3,13 @@
 
 ---
 
+[//]: # (Image References)
+
+[noisy-camera]: ./misc/noisy-camera.png
+[filtered]: ./misc/filtered.png
+[robot-joint-space-2]: ./misc_images/robot-joint-space-2.png
+[inverse-calculation]: ./misc_images/inverse-calculation.png
+[screenshot]: ./misc_images/screenshot.png
 
 # Required Steps for a Passing Submission:
 1. Extract features and train an SVM model on new objects (see `pick_list_*.yaml` in `/pr2_robot/config/` for the list of models you'll be trying to identify). 
@@ -40,6 +47,8 @@ The PR2 robot is fitted with an RGB-D camera that provides per-pixel depth infor
 This camera continuously captures the point cloud from the robot's environment and writes to the ros topic `/pr2/world/points`.
 This serves as our input to the perception pipeline. 
 
+#### 1. Complete Exercise 1 steps. Pipeline for filtering and RANSAC plane fitting implemented.
+
 The input is in the form of _ROS PointCloud2_ message object. We need to convert it to _PCL PointXYZRGB_ to use it in our pipeline.
 The following code does the job for us.
 
@@ -48,8 +57,12 @@ The following code does the job for us.
     cloud_filtered =  ros_to_pcl(pcl_msg)
 ```
 
-Initially the input may contain noisy data which has to be cleaned and filtered to obtain point cloud corresponding to 
-the objects of interest only. To do this we first apply _PCL’s Statistical Outlier Removal_ to get rid of the noise 
+Initially the input may be noisy as the following image:
+
+![alt text][noisy-camera]
+
+This data needs to be cleaned and filtered to obtain point cloud corresponding to 
+the objects of interest only. To do this we first apply _PCL’s Statistical Outlier Filter_ to get rid of the noise 
 in the point cloud data. Assuming a Gaussian distribution, we filter out the noise as follows:
 
 ```python
@@ -70,7 +83,12 @@ in the point cloud data. Assuming a Gaussian distribution, we filter out the noi
     cloud_filtered = outlier_filter.filter()
 ```
 
-#### 1. Complete Exercise 1 steps. Pipeline for filtering and RANSAC plane fitting implemented.
+The filtered data looks much cleaner like the following image:
+
+![alt text][filtered]
+
+
+
 
 #### 2. Complete Exercise 2 steps: Pipeline including clustering for segmentation implemented.  
 
