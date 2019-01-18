@@ -78,7 +78,7 @@ def pcl_callback(pcl_msg):
     # Choose a voxel (also known as leaf) size
     # Note: this (1) is a poor choice of leaf size
     # Experiment and find the appropriate size!
-    LEAF_SIZE = 0.005
+    LEAF_SIZE = 0.01
 
     # Set the voxel (or leaf) size
     vox.set_leaf_size(LEAF_SIZE, LEAF_SIZE, LEAF_SIZE)
@@ -97,8 +97,8 @@ def pcl_callback(pcl_msg):
     # Assign axis and range to the passthrough filter object.
     filter_axis = 'z'
     passthrough.set_filter_field_name(filter_axis)
-    axis_min = 0.60
-    axis_max = 1.10
+    axis_min = 0.6
+    axis_max = 1.1
     passthrough.set_filter_limits(axis_min, axis_max)
 
     # Finally use the filter function to obtain the resultant point cloud.
@@ -109,8 +109,8 @@ def pcl_callback(pcl_msg):
     # Assign axis and range to the passthrough filter object.
     filter_axis = 'y'
     passthrough.set_filter_field_name(filter_axis)
-    axis_min = -0.45
-    axis_max = 0.45
+    axis_min = -0.4
+    axis_max = 0.4
     passthrough.set_filter_limits(axis_min, axis_max)
 
     # Finally use the filter function to obtain the resultant point cloud.
@@ -130,7 +130,7 @@ def pcl_callback(pcl_msg):
     # Max distance for a point to be considered fitting the model
     # Experiment with different values for max_distance
     # for segmenting the table
-    max_distance = 0.01
+    max_distance = 0.03
     seg.set_distance_threshold(max_distance)
 
     # Call the segment function to obtain set of inlier indices and model coefficients
@@ -157,9 +157,9 @@ def pcl_callback(pcl_msg):
     # as well as minimum and maximum cluster size (in points)
     # NOTE: These are poor choices of clustering parameters
     # Your task is to experiment and find values that work for segmenting objects.
-    ec.set_ClusterTolerance(0.04)
+    ec.set_ClusterTolerance(0.05)
     ec.set_MinClusterSize(10)
-    ec.set_MaxClusterSize(20000)
+    ec.set_MaxClusterSize(25000)
     # Search the k-d tree for clusters
     ec.set_SearchMethod(tree)
     # Extract indices for each of the discovered clusters
@@ -362,3 +362,4 @@ if __name__ == '__main__':
     # TODO: Spin while node is not shutdown
     while not rospy.is_shutdown():
         rospy.spin()
+
