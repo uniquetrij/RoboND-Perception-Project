@@ -290,11 +290,15 @@ def pr2_mover(object_list):
         SCENE.data = 3
 
         # Get index of object from stored list
-        obj_index = labels.index(object_list_param[i]['name'])
+        obj_index = -1
+        try:
+            obj_index = labels.index(object_list_param[i]['name'])
+        except:
+            pass
 
         # Stop if object was not detected in the scene
         if (obj_index == -1):
-            rospy.loginfo('No object detected')
+            rospy.loginfo('Object not detected')
             return
 
         # TODO: Get the PointCloud for a given object and obtain it's centroid
