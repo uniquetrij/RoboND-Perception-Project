@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bdb02b7-0e56-4800-a585-1e7eabab3100" name="Default Changelist" comment="" />
+    <list default="true" id="0bdb02b7-0e56-4800-a585-1e7eabab3100" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/sensor_stick/src/sensor_stick/features.py" beforeDir="false" afterPath="$PROJECT_DIR$/sensor_stick/src/sensor_stick/features.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,36 +24,50 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="5" />
-          <entry key="py" value="116" />
+          <entry key="py" value="159" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="5" />
-          <entry key="Python" value="116" />
+          <entry key="Python" value="159" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="launch" value="1" />
+          <entry key="py" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="PLAIN_TEXT" value="1" />
+          <entry key="Python" value="1" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="225">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pr2_robot/scripts/project_template.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="259">
               <caret line="294" column="24" selection-start-line="294" selection-start-column="24" selection-end-line="294" selection-end-column="24" />
               <folding>
                 <element signature="e#40#58#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sensor_stick/src/sensor_stick/features.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="223">
+              <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -110,6 +126,7 @@
         <option value="$PROJECT_DIR$/pr2_robot/scripts/pcl_helper.py" />
         <option value="$PROJECT_DIR$/writeup_template.md" />
         <option value="$PROJECT_DIR$/pr2_robot/scripts/project_template.py" />
+        <option value="$PROJECT_DIR$/sensor_stick/src/sensor_stick/features.py" />
       </list>
     </option>
   </component>
@@ -120,10 +137,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="43" />
-    <option name="y" value="24" />
+    <option name="x" value="33" />
+    <option name="y" value="-4" />
     <option name="width" value="667" />
-    <option name="height" value="744" />
+    <option name="height" value="772" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -140,13 +157,20 @@
             <path>
               <item name="RoboND-Perception-Project" type="b2602c69:ProjectViewProjectNode" />
               <item name="RoboND-Perception-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="pr2_robot" type="462c0819:PsiDirectoryNode" />
+              <item name="sensor_stick" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="RoboND-Perception-Project" type="b2602c69:ProjectViewProjectNode" />
               <item name="RoboND-Perception-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="pr2_robot" type="462c0819:PsiDirectoryNode" />
-              <item name="launch" type="462c0819:PsiDirectoryNode" />
+              <item name="sensor_stick" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RoboND-Perception-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RoboND-Perception-Project" type="462c0819:PsiDirectoryNode" />
+              <item name="sensor_stick" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sensor_stick" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -225,7 +249,7 @@
     <frame x="33" y="-4" width="1333" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31639722" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19168591" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -324,6 +348,16 @@
           <caret line="294" column="24" selection-start-line="294" selection-start-column="24" selection-end-line="294" selection-end-column="24" />
           <folding>
             <element signature="e#40#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sensor_stick/src/sensor_stick/features.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
