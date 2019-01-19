@@ -287,7 +287,7 @@ def pr2_mover(object_list):
         OBJECT.data = object_list_param[i]['name']
 
         # Specify the test scene number
-        SCENE.data = 1
+        SCENE.data = 3
 
         # Get index of object from stored list
         obj_index = labels.index(object_list_param[i]['name'])
