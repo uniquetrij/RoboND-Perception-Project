@@ -299,7 +299,7 @@ def pr2_mover(object_list):
         # Stop if object was not detected in the scene
         if (obj_index == -1):
             rospy.loginfo('Object not detected')
-            return
+            continue
 
         # TODO: Get the PointCloud for a given object and obtain it's centroid
         centroid = centroids[obj_index]
