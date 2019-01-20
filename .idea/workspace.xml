@@ -2,17 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0bdb02b7-0e56-4800-a585-1e7eabab3100" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/misc/2019-01-17-131018_1918x962_scrot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/misc/2019-01-17-131246_1918x962_scrot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/misc/2019-01-17-131452_1918x962_scrot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/misc/2019-01-17-131940_1918x962_scrot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/misc/filtered.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/misc/noisy-camera.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output_1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/output_1.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pr2_robot/config/pr2.rviz" beforeDir="false" afterPath="$PROJECT_DIR$/pr2_robot/config/pr2.rviz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pr2_robot/launch/pick_place_project.launch" beforeDir="false" afterPath="$PROJECT_DIR$/pr2_robot/launch/pick_place_project.launch" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pr2_robot/scripts/project_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/pr2_robot/scripts/project_template.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/writeup_template.md" beforeDir="false" afterPath="$PROJECT_DIR$/writeup_template.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,15 +26,15 @@
         <counts>
           <entry key="dummy" value="5" />
           <entry key="launch" value="8" />
-          <entry key="md" value="2292" />
+          <entry key="md" value="2970" />
           <entry key="py" value="485" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Markdown" value="2290" />
+          <entry key="Markdown" value="2967" />
           <entry key="PLAIN_TEXT" value="13" />
-          <entry key="Python" value="487" />
+          <entry key="Python" value="488" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -69,8 +58,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pr2_robot/scripts/project_template.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="163" column="44" lean-forward="true" selection-start-line="137" selection-start-column="3" selection-end-line="163" selection-end-column="44" />
+            <state relative-caret-position="108">
+              <caret line="164" lean-forward="true" selection-start-line="164" selection-end-line="164" />
               <folding>
                 <element signature="e#40#58#0" expanded="true" />
               </folding>
@@ -82,8 +71,8 @@
         <entry file="file://$PROJECT_DIR$/writeup_template.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="523">
-                <caret line="232" lean-forward="true" selection-start-line="232" selection-end-line="232" />
+              <first_editor relative-caret-position="331">
+                <caret line="287" column="50" selection-start-line="287" selection-start-column="50" selection-end-line="287" selection-end-column="50" />
               </first_editor>
               <second_editor />
             </state>
@@ -361,8 +350,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pr2_robot/scripts/project_template.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="163" column="44" lean-forward="true" selection-start-line="137" selection-start-column="3" selection-end-line="163" selection-end-column="44" />
+        <state relative-caret-position="108">
+          <caret line="164" lean-forward="true" selection-start-line="164" selection-end-line="164" />
           <folding>
             <element signature="e#40#58#0" expanded="true" />
           </folding>
@@ -372,8 +361,8 @@
     <entry file="file://$PROJECT_DIR$/writeup_template.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="523">
-            <caret line="232" lean-forward="true" selection-start-line="232" selection-end-line="232" />
+          <first_editor relative-caret-position="331">
+            <caret line="287" column="50" selection-start-line="287" selection-start-column="50" selection-end-line="287" selection-end-column="50" />
           </first_editor>
           <second_editor />
         </state>
