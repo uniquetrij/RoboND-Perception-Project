@@ -2,7 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0bdb02b7-0e56-4800-a585-1e7eabab3100" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/sensor_stick/src/sensor_stick/features.py" beforeDir="false" afterPath="$PROJECT_DIR$/sensor_stick/src/sensor_stick/features.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/misc/2019-01-17-131018_1918x962_scrot.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/misc/2019-01-17-131246_1918x962_scrot.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/misc/2019-01-17-131452_1918x962_scrot.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/misc/2019-01-17-131940_1918x962_scrot.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/misc/filtered.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/misc/noisy-camera.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output_1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/output_1.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pr2_robot/config/pr2.rviz" beforeDir="false" afterPath="$PROJECT_DIR$/pr2_robot/config/pr2.rviz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pr2_robot/launch/pick_place_project.launch" beforeDir="false" afterPath="$PROJECT_DIR$/pr2_robot/launch/pick_place_project.launch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pr2_robot/scripts/project_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/pr2_robot/scripts/project_template.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/writeup_template.md" beforeDir="false" afterPath="$PROJECT_DIR$/writeup_template.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,31 +29,37 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.open.time.14" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.43" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="5" />
-          <entry key="py" value="159" />
+          <entry key="launch" value="8" />
+          <entry key="md" value="2292" />
+          <entry key="py" value="485" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="5" />
-          <entry key="Python" value="159" />
+          <entry key="Markdown" value="2290" />
+          <entry key="PLAIN_TEXT" value="13" />
+          <entry key="Python" value="487" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="launch" value="1" />
-          <entry key="py" value="1" />
+          <entry key="launch" value="2" />
+          <entry key="md" value="1" />
+          <entry key="py" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="1" />
+          <entry key="Markdown" value="1" />
+          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="Python" value="2" />
         </counts>
       </usages-collector>
     </session>
@@ -52,8 +69,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pr2_robot/scripts/project_template.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="294" column="24" selection-start-line="294" selection-start-column="24" selection-end-line="294" selection-end-column="24" />
+            <state relative-caret-position="384">
+              <caret line="163" column="44" lean-forward="true" selection-start-line="137" selection-start-column="3" selection-end-line="163" selection-end-column="44" />
               <folding>
                 <element signature="e#40#58#0" expanded="true" />
               </folding>
@@ -62,30 +79,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/sensor_stick/src/sensor_stick/features.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
+        <entry file="file://$PROJECT_DIR$/writeup_template.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="523">
+                <caret line="232" lean-forward="true" selection-start-line="232" selection-end-line="232" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pr2_robot/launch/pick_place_project.launch">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/writeup_template.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="996">
-                <caret line="83" column="3" selection-start-line="83" selection-start-column="3" selection-end-line="83" selection-end-column="3" />
-              </first_editor>
-              <second_editor />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="12" column="64" selection-start-line="12" selection-start-column="64" selection-end-line="12" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -110,6 +119,9 @@
       <find>SCENE</find>
       <find>drop_box_param</find>
       <find>object_list</find>
+      <find>stat_filtered</find>
+      <find>pass_filtered_yz</find>
+      <find>object_markers_pub</find>
     </findStrings>
     <replaceStrings>
       <replace>',</replace>
@@ -124,9 +136,10 @@
         <option value="$PROJECT_DIR$/pr2_robot/scripts/project_2.py" />
         <option value="$PROJECT_DIR$/sensor_stick/scripts/capture_features.py" />
         <option value="$PROJECT_DIR$/pr2_robot/scripts/pcl_helper.py" />
-        <option value="$PROJECT_DIR$/writeup_template.md" />
-        <option value="$PROJECT_DIR$/pr2_robot/scripts/project_template.py" />
         <option value="$PROJECT_DIR$/sensor_stick/src/sensor_stick/features.py" />
+        <option value="$PROJECT_DIR$/pr2_robot/launch/pick_place_project.launch" />
+        <option value="$PROJECT_DIR$/pr2_robot/scripts/project_template.py" />
+        <option value="$PROJECT_DIR$/writeup_template.md" />
       </list>
     </option>
   </component>
@@ -147,6 +160,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -157,26 +171,18 @@
             <path>
               <item name="RoboND-Perception-Project" type="b2602c69:ProjectViewProjectNode" />
               <item name="RoboND-Perception-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="sensor_stick" type="462c0819:PsiDirectoryNode" />
+              <item name="pr2_robot" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="RoboND-Perception-Project" type="b2602c69:ProjectViewProjectNode" />
               <item name="RoboND-Perception-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="sensor_stick" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RoboND-Perception-Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RoboND-Perception-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="sensor_stick" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="sensor_stick" type="462c0819:PsiDirectoryNode" />
+              <item name="pr2_robot" type="462c0819:PsiDirectoryNode" />
+              <item name="launch" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -246,10 +252,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="33" y="-4" width="1333" height="772" extended-state="6" />
+    <frame x="32" y="-11" width="1335" height="780" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19168591" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.19399539" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -329,29 +335,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/writeup_template.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="996">
-            <caret line="83" column="3" selection-start-line="83" selection-start-column="3" selection-end-line="83" selection-end-column="3" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pr2_robot/launch/pick_place_project.launch">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pr2_robot/scripts/project_template.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="294" column="24" selection-start-line="294" selection-start-column="24" selection-end-line="294" selection-end-column="24" />
-          <folding>
-            <element signature="e#40#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sensor_stick/src/sensor_stick/features.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="223">
@@ -359,6 +342,40 @@
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/ros/kinetic/lib/python2.7/dist-packages/rospy/topics.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="858" column="8" selection-start-line="858" selection-start-column="8" selection-end-line="858" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pr2_robot/launch/pick_place_project.launch">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="12" column="64" selection-start-line="12" selection-start-column="64" selection-end-line="12" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pr2_robot/scripts/project_template.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="163" column="44" lean-forward="true" selection-start-line="137" selection-start-column="3" selection-end-line="163" selection-end-column="44" />
+          <folding>
+            <element signature="e#40#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/writeup_template.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="523">
+            <caret line="232" lean-forward="true" selection-start-line="232" selection-end-line="232" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

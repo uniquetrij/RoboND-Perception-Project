@@ -56,24 +56,24 @@ def pcl_callback(pcl_msg):
 
     # TODO: Statistical Outlier Filtering
     # Much like the previous filters, we start by creating a filter object:
-    outlier_filter = point_cloud.make_statistical_outlier_filter()
+    stat = point_cloud.make_statistical_outlier_filter()
 
     # Set the number of neighboring points to analyze for any given point
-    outlier_filter.set_mean_k(8)
+    stat.set_mean_k(8)
 
     # Set threshold scale factor
     x = 0.3
 
     # Any point with a mean distance larger than global (mean distance+x*std_dev) will be considered outlier
-    outlier_filter.set_std_dev_mul_thresh(x)
+    stat.set_std_dev_mul_thresh(x)
 
     # Finally call the filter function for magic
-    cloud_filtered = outlier_filter.filter()
+    stat_filtered = stat.filter()
 
     # TODO: Voxel Grid Downsampling
 
     # Create a VoxelGrid filter object for our input point cloud
-    vox = cloud_filtered.make_voxel_grid_filter()
+    vox = stat_filtered.make_voxel_grid_filter()
 
     # Choose a voxel (also known as leaf) size
     # Note: this (1) is a poor choice of leaf size
@@ -84,7 +84,7 @@ def pcl_callback(pcl_msg):
     vox.set_leaf_size(LEAF_SIZE, LEAF_SIZE, LEAF_SIZE)
 
     # Call the filter function to obtain the resultant downsampled point cloud
-    cloud_filtered = vox.filter()
+    vox_filtered = vox.filter()
     # filename = 'voxel_downsampled.pcd'
     # pcl.save(cloud_filtered, filename)
 
@@ -92,7 +92,7 @@ def pcl_callback(pcl_msg):
 
     # PassThrough filter
     # Create a PassThrough filter object.
-    passthrough = cloud_filtered.make_passthrough_filter()
+    passthrough = vox_filtered.make_passthrough_filter()
 
     # Assign axis and range to the passthrough filter object.
     filter_axis = 'z'
@@ -102,9 +102,9 @@ def pcl_callback(pcl_msg):
     passthrough.set_filter_limits(axis_min, axis_max)
 
     # Finally use the filter function to obtain the resultant point cloud.
-    cloud_filtered = passthrough.filter()
+    pass_filtered_z = passthrough.filter()
 
-    passthrough = cloud_filtered.make_passthrough_filter()
+    passthrough = pass_filtered_z.make_passthrough_filter()
 
     # Assign axis and range to the passthrough filter object.
     filter_axis = 'y'
@@ -114,14 +114,31 @@ def pcl_callback(pcl_msg):
     passthrough.set_filter_limits(axis_min, axis_max)
 
     # Finally use the filter function to obtain the resultant point cloud.
-    cloud_filtered = passthrough.filter()
+    pass_filtered_yz = passthrough.filter()
     # filename = 'pass_through_filtered.pcd'
     # pcl.save(cloud_filtered, filename)
+
+
+    passthrough = pass_filtered_yz.make_passthrough_filter()
+
+    # Assign axis and range to the passthrough filter object.
+    filter_axis = 'x'
+    passthrough.set_filter_field_name(filter_axis)
+    axis_min = 0.35
+    axis_max = 1
+    passthrough.set_filter_limits(axis_min, axis_max)
+
+    # Finally use the filter function to obtain the resultant point cloud.
+    pass_filtered_xyz = passthrough.filter()
+    # filename = 'pass_through_filtered.pcd'
+    # pcl.save(cloud_filtered, filename)
+
+
 
     # TODO: RANSAC Plane Segmentation
 
     # Create the segmentation object
-    seg = cloud_filtered.make_segmenter()
+    seg = pass_filtered_xyz.make_segmenter()
 
     # Set the model you wish to fit
     seg.set_model_type(pcl.SACMODEL_PLANE)
@@ -138,11 +155,11 @@ def pcl_callback(pcl_msg):
 
     # TODO: Extract inliers and outliers
     # Extract inliers
-    extracted_inliers = cloud_filtered.extract(inliers, negative=False)
+    extracted_inliers = pass_filtered_xyz.extract(inliers, negative=False)
     # filename = 'extracted_inliers.pcd'
     # pcl.save(extracted_inliers, filename)
 
-    extracted_outliers = cloud_filtered.extract(inliers, negative=True)
+    extracted_outliers = pass_filtered_xyz.extract(inliers, negative=True)
     # filename = 'extracted_outliers.pcd'
     # pcl.save(extracted_outliers, filename)
 
@@ -184,11 +201,23 @@ def pcl_callback(pcl_msg):
     cluster_cloud.from_list(color_cluster_point_list)
 
     # TODO: Convert PCL data to ROS messages
+    ros_stat = pcl_to_ros(stat_filtered)
+    ros_vox = pcl_to_ros(vox_filtered)
+    ros_pass_z = pcl_to_ros(pass_filtered_z)
+    ros_pass_yz = pcl_to_ros(pass_filtered_yz)
+    ros_pass_xyz = pcl_to_ros(pass_filtered_xyz)
+
     ros_cluster_cloud = pcl_to_ros(cluster_cloud)
     ros_cloud_objects = pcl_to_ros(extracted_outliers)
     ros_cloud_table = pcl_to_ros(extracted_inliers)
 
     # TODO: Publish ROS messages
+    pcl_stat_filter_pub.publish(ros_stat)
+    pcl_vox_filter_pub.publish(ros_vox)
+    pcl_pass_filter_z_pub.publish(ros_pass_z)
+    pcl_pass_filter_yz_pub.publish(ros_pass_yz)
+    pcl_pass_filter_xyz_pub.publish(ros_pass_xyz)
+
     pcl_objects_pub.publish(ros_cloud_objects)
     pcl_table_pub.publish(ros_cloud_table)
     pcl_cluster_pub.publish(ros_cluster_cloud)
@@ -223,7 +252,7 @@ def pcl_callback(pcl_msg):
 
         # Publish a label into RViz
         label_pos = list(white_cloud[pts_list[0]])
-        label_pos[2] += .4
+        label_pos[2] += .3
         object_markers_pub.publish(make_label(label, label_pos, index))
 
         # Add the detected object to the list of detected objects.
@@ -287,7 +316,7 @@ def pr2_mover(object_list):
         OBJECT.data = object_list_param[i]['name']
 
         # Specify the test scene number
-        SCENE.data = 3
+        SCENE.data = 1
 
         # Get index of object from stored list
         obj_index = -1
@@ -354,6 +383,12 @@ if __name__ == '__main__':
     pcl_sub = rospy.Subscriber("/pr2/world/points", pc2.PointCloud2, pcl_callback, queue_size=1)
 
     # TODO: Create Publishers
+    pcl_stat_filter_pub = rospy.Publisher("/pcl_stat_filter", PointCloud2, queue_size=1)
+    pcl_vox_filter_pub = rospy.Publisher("/pcl_vox_filter", PointCloud2, queue_size=1)
+    pcl_pass_filter_z_pub = rospy.Publisher("/pcl_pass_filter_z", PointCloud2, queue_size=1)
+    pcl_pass_filter_yz_pub = rospy.Publisher("/pcl_pass_filter_yz", PointCloud2, queue_size=1)
+    pcl_pass_filter_xyz_pub = rospy.Publisher("/pcl_pass_filter_xyz", PointCloud2, queue_size=1)
+
     pcl_objects_pub = rospy.Publisher("/pcl_objects", PointCloud2, queue_size=1)
     pcl_table_pub = rospy.Publisher("/pcl_table", PointCloud2, queue_size=1)
     pcl_cluster_pub = rospy.Publisher("/pcl_cluster", PointCloud2, queue_size=1)
