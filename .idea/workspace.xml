@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0bdb02b7-0e56-4800-a585-1e7eabab3100" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/model.sav" beforeDir="false" afterPath="$PROJECT_DIR$/model.sav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/writeup_template.md" beforeDir="false" afterPath="$PROJECT_DIR$/writeup_template.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,13 +26,13 @@
         <counts>
           <entry key="dummy" value="5" />
           <entry key="launch" value="8" />
-          <entry key="md" value="3873" />
+          <entry key="md" value="4988" />
           <entry key="py" value="485" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Markdown" value="3870" />
+          <entry key="Markdown" value="4985" />
           <entry key="PLAIN_TEXT" value="13" />
           <entry key="Python" value="488" />
         </counts>
@@ -59,8 +58,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pr2_robot/scripts/project_template.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="255" column="26" selection-start-line="255" selection-start-column="8" selection-end-line="255" selection-end-column="26" />
+            <state relative-caret-position="222">
+              <caret line="320" selection-start-line="320" selection-end-line="330" selection-end-column="20" />
               <folding>
                 <element signature="e#40#58#0" expanded="true" />
               </folding>
@@ -72,8 +71,8 @@
         <entry file="file://$PROJECT_DIR$/writeup_template.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="379">
-                <caret line="350" lean-forward="true" selection-start-line="350" selection-end-line="350" />
+              <first_editor relative-caret-position="548">
+                <caret line="398" column="60" selection-start-line="398" selection-start-column="60" selection-end-line="398" selection-end-column="60" />
               </first_editor>
               <second_editor />
             </state>
@@ -351,8 +350,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pr2_robot/scripts/project_template.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="255" column="26" selection-start-line="255" selection-start-column="8" selection-end-line="255" selection-end-column="26" />
+        <state relative-caret-position="222">
+          <caret line="320" selection-start-line="320" selection-end-line="330" selection-end-column="20" />
           <folding>
             <element signature="e#40#58#0" expanded="true" />
           </folding>
@@ -362,8 +361,8 @@
     <entry file="file://$PROJECT_DIR$/writeup_template.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="379">
-            <caret line="350" lean-forward="true" selection-start-line="350" selection-end-line="350" />
+          <first_editor relative-caret-position="548">
+            <caret line="398" column="60" selection-start-line="398" selection-start-column="60" selection-end-line="398" selection-end-column="60" />
           </first_editor>
           <second_editor />
         </state>

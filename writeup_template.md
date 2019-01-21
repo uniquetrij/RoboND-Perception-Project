@@ -297,7 +297,7 @@ The svm reached an accuracy of 94% as can be seen in the figure below.
 ![alt text][svm]
  
 The trained model can be found here [model.sav](./model.sav). We load this model in the script 
-[project_run.py](./pr2_robot/scripts/project_run.py) as follows:
+[project_template.py](./pr2_robot/scripts/project_template.py) as follows:
 
 ```python
     # TODO: Load Model From disk
@@ -349,21 +349,51 @@ PR2 robot to actuate the movements.
         detected_objects.append(do)
 ```
 
+
 ### Pick and Place Setup
+
+---
 
 #### 1. For all three tabletop setups (`test*.world`), perform object recognition, then read in respective pick list (`pick_list_*.yaml`). Next construct the messages that would comprise a valid `PickPlace` request output them to `.yaml` format.
 
-And here's another image! 
-![demo-2](https://user-images.githubusercontent.com/20687560/28748286-9f65680e-7468-11e7-83dc-f1a32380b89c.png)
 
-Spend some time at the end to discuss your code, what techniques you used, what worked and why, where the implementation might fail and how you might improve it if you were going to pursue this project further.  
+The following are the detection results for the 3 worlds and their corresponding ``output yaml``:
 
-roslaunch sensor_stick training.launch
-rosrun sensor_stick capture_features.py
-rosrun sensor_stick train_svm.py
+**Test 1 World [output_1.yaml](./output_1.yaml)**. All objects were detected correctly.
+![alt text][recog_1]
+---
 
-rosdep install --from-paths src --ignore-src --rosdistro=kinetic -y
+**Test 2 World [output_2.yaml](./output_2.yaml)**. Again, all objects were detected correctly.
+![alt text][recog_2]
+---
 
-roslaunch pr2_robot pick_place_project.launch
+**Test 3 World[output_3.yaml](./output_3.yaml)**. 7 out of 8 objects were detected correctly. The `glue` was incorrectly 
+detected as sticky_notes.
 
-rosrun pr2_robot project_template.py
+![alt text][recog_3]
+---
+
+### Comments and Discussion
+
+The incorrect detection is mostly because the glue is the test 3 world is partially occluded by the book in front of it. 
+Training the svm with a larger dataset should fix the problem which I could not perform due to system constraints and time. 
+
+Also I faced a strange issue that whenever there were an incorrect detection, the code in line 324 of 
+[project_template.py](./pr2_robot/scripts/project_template.py) would break and exit as it can't find the `name` from 
+the `object_list_param` in the `labels` list. To handle this I had to modify the introduce a 
+`try-except` mechanism as follows:
+
+```python
+        # Get index of object from stored list
+        obj_index = -1
+        try:
+            obj_index = labels.index(object_list_param[i]['name'])
+        except:
+            pass
+
+        # Stop if object was not detected in the scene
+        if (obj_index == -1):
+            rospy.loginfo('Object not detected')
+            continue
+```
+This fixed the issue and the code ran correctly there after.
