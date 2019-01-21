@@ -297,7 +297,7 @@ The svm reached an accuracy of 94% as can be seen in the figure below.
 ![alt text][svm]
  
 The trained model can be found here [model.sav](./model.sav). We load this model in the script 
-[project_template.py](./pr2_robot/scripts/project_template.py) as follows:
+[project.py](./pr2_robot/scripts/project.py) as follows:
 
 ```python
     # TODO: Load Model From disk
@@ -379,7 +379,7 @@ The incorrect detection is mostly because the glue is the test 3 world is partia
 Training the svm with a larger dataset should fix the problem which I could not perform due to system constraints and time. 
 
 Also I faced a strange issue that whenever there were an incorrect detection, the code in line 324 of 
-[project_template.py](./pr2_robot/scripts/project_template.py) would break and exit as it can't find the `name` from 
+[project.py](./pr2_robot/scripts/project.py) would break and exit as it can't find the `name` from 
 the `object_list_param` in the `labels` list. To handle this I had to modify the introduce a 
 `try-except` mechanism as follows:
 
