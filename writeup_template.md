@@ -15,6 +15,7 @@
 [cluster]: ./misc/cluster.png
 [table]: ./misc/table.png
 [objects]: ./misc/objects.png
+[svm]: ./misc/svm.png
 [recog_1]: ./misc/recog_1.png
 [recog_2]: ./misc/recog_2.png
 [recog_3]: ./misc/recog_3.png
@@ -78,7 +79,7 @@ Initially the input cloud may be noisy as the following image.
 ![alt text][cloud]
 
 This data needs to be cleaned and filtered to obtain point cloud corresponding to the objects of interest only.
-To do this we first apply _PCL’s Statistical Outlier Filter_ to get rid of the noise in the point cloud data. 
+To do this we first apply __PCL’s Statistical Outlier Filter__ to get rid of the noise in the point cloud data. 
 Assuming a Gaussian distribution, we filter out the noise as follows:
 
 ```python
@@ -133,7 +134,7 @@ The result is as follows where the point cloud is less dense but the individual 
 
 It may be noted here that the region denoted by the point cloud is much bigger than the region of interest on the table 
 where the objects are placed. The reducing the computation further more, we can crop the regions external to the region 
-of interest. This is accomplished the following code using __Pass Through__ filtering, first anong `z-axis` to get rid 
+of interest. This is accomplished the following code using __Pass Through Filtering__, first anong `z-axis` to get rid 
 of the height (thickness) of the table:
 
 ```python
@@ -284,8 +285,69 @@ For the purpose of visualization, we color the clusters uniquely and the visuali
 
 #### 3. Complete Exercise 3 Steps.  Features extracted and SVM trained.  Object recognition implemented.
 
-Now it is time to detect the objects from the individual clusters. Sincle each object has a unique shape and size, 
-we'll use SVM to predict the objects in this case.
+Now it is time to detect the objects from the individual clusters. Since each object has a unique shape and size, we will use
+a simple machine learning algorithm known as __Support Vector Machine__ or SVM to predict the object classes in this case.
+
+We'll use the provided scripts [capture_features.py](./sensor_stick/scripts/capture_features.py) to first capture the 
+features of the objects followed by [train_svm.py](./sensor_stick/scripts/train_svm.py) to train the svm model.
+
+We first capture 200 example images of each object (total 8 objects ) which results a total of 1600 features across 8 classes.
+The svm reached an accuracy of 94% as can be seen in the figure below.
+
+![alt text][svm]
+ 
+The trained model can be found here [model.sav](./model.sav). We load this model in the script 
+[project_run.py](./pr2_robot/scripts/project_run.py) as follows:
+
+```python
+    # TODO: Load Model From disk
+    model = pickle.load(open('src/RoboND-Perception-Project/model.sav', 'rb'))
+    clf = model['classifier']
+    encoder = LabelEncoder()
+    encoder.classes_ = model['classes']
+    scaler = model['scaler']
+```
+
+Now we can use the model to predict the objects from the clusters and publish the result which will be used by the 
+PR2 robot to actuate the movements.
+
+```python
+# Classify the clusters!
+    detected_objects_labels = []
+    detected_objects = []
+
+    for index, pts_list in enumerate(cluster_indices):
+
+        # Grab the points for the cluster
+        pcl_cluster = extracted_outliers.extract(pts_list)
+
+        # TODO: convert the cluster from pcl to ROS using helper function
+        sample_cloud = pcl_to_ros(pcl_cluster)
+
+        # Extract histogram features
+        # TODO: complete this step just as is covered in capture_features.py
+        chists = compute_color_histograms(sample_cloud, using_hsv=True)
+        normals = get_normals(sample_cloud)
+        nhists = compute_normal_histograms(normals)
+        feature = np.concatenate((chists, nhists))
+
+        # Make the prediction, retrieve the label for the result
+        # and add it to detected_objects_labels list
+        prediction = clf.predict(scaler.transform(feature.reshape(1,-1)))
+        label = encoder.inverse_transform(prediction)[0]
+        detected_objects_labels.append(label)
+
+        # Publish a label into RViz
+        label_pos = list(white_cloud[pts_list[0]])
+        label_pos[2] += .3
+        object_markers_pub.publish(make_label(label, label_pos, index))
+
+        # Add the detected object to the list of detected objects.
+        do = DetectedObject()
+        do.label = label
+        do.cloud = sample_cloud
+        detected_objects.append(do)
+```
 
 ### Pick and Place Setup
 
