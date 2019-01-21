@@ -369,7 +369,6 @@ The following are the detection results for the 3 worlds and their corresponding
 
 **Test 3 World[output_3.yaml](./output_3.yaml)**. 7 out of 8 objects were detected correctly. The `glue` was incorrectly 
 detected as sticky_notes.
-
 ![alt text][recog_3]
 ---
 
