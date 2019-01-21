@@ -56,7 +56,7 @@ You're reading it!
 
 ### Exercise 1, 2 and 3 pipeline implemented
 
-The PR2 robot is fitted with an RGB-D camera that provides per-pixel depth information in addition to an RGB image. 
+The PR2 robot is fitted with an RGB-D camera that provides depth-per-pixel information in addition to an RGB image. 
 This camera continuously captures the point cloud from the robot's environment and writes to the ros topic `/pr2/world/points`.
 This serves as our input to the perception pipeline. Here is an example image from __Test World 1__ depicting how the original 
 environment with objects lying on the table looks like from the robot's perspective.
@@ -236,7 +236,7 @@ The separated out objects and the table top is shown int he following figure:
 
 #### 2. Complete Exercise 2 steps: Pipeline including clustering for segmentation implemented. 
 
-Now science we have only the cloud points corresponding to individual objects, we can segment the cloud points and cluster 
+Now since we have only the cloud points corresponding to individual objects, we can segment the cloud points and cluster 
 them such that the objects can be recognized individually. We use __PCL's Euclidean Clustering__ algorithm for this purpose as follows:
 
 ```python
